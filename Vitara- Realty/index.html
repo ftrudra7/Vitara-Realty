@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitara Real Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            font-size: 20px; /* Increased base font size for readability */
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E2E2E2;
+            overflow-x: hidden;
+            font-size: 1.15rem; /* Larger default font size */
+            letter-spacing: 0.01em;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .btn-primary {
+            background-image: linear-gradient(to right, #0b4a73, #303E55);
+            color: white;
+            padding: 1.1rem 2.2rem;
+            border-radius: 2.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+            transition: background-image 0.3s, box-shadow 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 1s both;
+            box-shadow: 0 6px 24px rgba(11,74,115,0.10);
+        }
+        .btn-primary:hover {
+            background-image: linear-gradient(to right, #083754, #231F20);
+            box-shadow: 0 10px 24px rgba(11,74,115,0.18);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .btn-primary:active{
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+        }
+
+        /* --- FOOTER NEWSLETTER & MULTI-COLUMN --- */
+        .footer-newsletter-section {
+            background: #fff;
+            padding: 3.5rem 0 0.5rem 0;
+            border-top-left-radius: 2.5rem;
+            border-top-right-radius: 2.5rem;
+            box-shadow: 0 -2px 24px rgba(11,74,115,0.08);
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-newsletter-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-newsletter-title {
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 0.7rem;
+        }
+        .footer-newsletter-desc {
+            color: #C19469;
+            font-size: 1.1rem;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+            margin-bottom: 1.7rem;
+        }
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.7rem;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .footer-newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.2rem 1rem 2.7rem;
+            border-radius: 2rem;
+            border: 1.5px solid #E2E2E2;
+            font-size: 1.1rem;
+            background: #F7F7F7 url('https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg') no-repeat 1rem center/1.2rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .footer-newsletter-form input[type="email"]:focus {
+            border: 1.5px solid #0b4a73;
+            background-color: #fff;
+        }
+        .footer-newsletter-form button {
+            background: #0b4a73;
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.95rem 2.2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .footer-newsletter-form button:hover {
+            background: #303E55;
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        /* --- FOOTER MAIN --- */
+        .footer-main {
+            background: #23404A;
+            color: #fff;
+            padding: 3.5rem 0 1.5rem 0;
+            border-bottom-left-radius: 2.5rem;
+            border-bottom-right-radius: 2.5rem;
+            margin-bottom: 0;
+            margin-top: -1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-main-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+        .footer-brand {
+            grid-column: span 1;
+        }
+        .footer-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 1.1rem;
+        }
+        .footer-brand-logo img {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+        .footer-brand-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #C19469;
+            letter-spacing: 0.01em;
+        }
+        .footer-brand-desc {
+            color: #e2e2e2;
+            font-size: 1rem;
+            margin-bottom: 1.1rem;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 0.7rem;
+            margin-top: 0.7rem;
+        }
+        .footer-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.1rem;
+            height: 2.1rem;
+            background: #fff;
+            border-radius: 50%;
+            color: #0b4a73;
+            font-size: 1.1rem;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .footer-socials a:hover {
+            background: #C19469;
+            color: #fff;
+            transform: scale(1.08);
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-links-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #C19469;
+            margin-bottom: 0.6rem;
+        }
+        .footer-links a {
+            color: #e2e2e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: #C19469;
+        }
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-contact-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #C19469;
+            margin-bottom: 0.6rem;
+        }
+        .footer-contact-info {
+            color: #e2e2e2;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .footer-newsletter-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .footer-newsletter-mini-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #C19469;
+            margin-bottom: 0.6rem;
+        }
+        .footer-newsletter-mini-form {
+            display: flex;
+            gap: 0.4rem;
+        }
+        .footer-newsletter-mini-form input[type="email"] {
+            flex: 1;
+            padding: 0.7rem 1.1rem;
+            border-radius: 2rem;
+            border: 1.5px solid #E2E2E2;
+            font-size: 1rem;
+            background: #F7F7F7;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .footer-newsletter-mini-form input[type="email"]:focus {
+            border: 1.5px solid #C19469;
+            background-color: #fff;
+        }
+        .footer-newsletter-mini-form button {
+            background: #C19469;
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.7rem 1.2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-newsletter-mini-form button:hover {
+            background: #A87D59;
+            transform: scale(1.05);
+        }
+        .footer-newsletter-mini-form button svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            color: #e2e2e2;
+            font-size: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #2e4d59;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-bottom-links {
+            margin-top: 0.3rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        .footer-bottom-links a {
+            color: #e2e2e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover {
+            color: #C19469;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-main-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .footer-newsletter-section {
+                padding: 2rem 0 0.5rem 0;
+                border-top-left-radius: 1.2rem;
+                border-top-right-radius: 1.2rem;
+            }
+            .footer-main {
+                padding: 2rem 0 1rem 0;
+                border-bottom-left-radius: 1.2rem;
+                border-bottom-right-radius: 1.2rem;
+            }
+            .footer-main-inner {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* --- REST OF YOUR CSS --- */
+        /* Office Card Styles */
+        .office-card-bg {
+            background: linear-gradient(135deg, #5a3a2e 70%, #c19469 100%);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem 2rem 2rem;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(44, 29, 18, 0.13);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .office-card-bg:before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; left: 0; height: 60%;
+            background: linear-gradient(120deg, #c19469 0%, #fff0 100%);
+            opacity: 0.13;
+            z-index: 0;
+        }
+        .office-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        .office-card-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .office-card-row:last-child {
+            margin-bottom: 0;
+        }
+        .office-card-icon {
+            width: 2.1rem;
+            height: 2.1rem;
+            flex-shrink: 0;
+            opacity: 0.85;
+        }
+        .office-card-label {
+            font-size: 1.08rem;
+            font-weight: 500;
+            color: #e2cdb6;
+        }
+        .office-card-value {
+            font-size: 1.13rem;
+            font-weight: 600;
+            color: #fff;
+            word-break: break-all;
+        }
+        .office-card-qr {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 0.3rem;
+        }
+        .office-card-qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        @media (max-width: 640px) {
+            .office-card-bg {
+                padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+                max-width: 98vw;
+            }
+            .office-card-qr {
+                top: 1rem;
+                right: 1rem;
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Drop shadow for Get Started section - MODIFIED */
+        #get-started-section .container {
+            box-shadow: 0 10px 40px 0 rgba(11,74,115,0.18), 0 2px 8px 0 rgba(0,0,0,0.10);
+            border-radius: 2rem;
+            background: #fff; /* Changed from rgba(11,74,115,0.07) to white */
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            color: #1F2937; /* Changed font color for contrast */
+        }
+        #get-started-section h2,
+        #get-started-section p {
+            color: #1F2937 !important; /* Ensure heading and paragraph are dark */
+        }
+
+        /* Hero Section Slideshow Background */
+        #hero-section {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-bg-slideshow {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero-bg-slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35) blur(1px);
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
+            will-change: opacity;
+            animation: fusein 1s both;
+            pointer-events: none;
+        }
+        .hero-bg-slideshow img.active {
+            opacity: 1;
+            z-index: 1;
+            animation: fusein 1s both;
+        }
+        .hero-bg-slideshow img.fading-out {
+            opacity: 0 !important;
+            z-index: 2;
+            animation: heroBgFadeOut 1.2s both;
+        }
+        @keyframes heroBgFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes heroBgFadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        /* Hero Section Content */
+        #hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        #hero-section h1 {
+            font-size: 2.1rem; /* Reduced font size */
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            text-shadow: 0 4px 24px rgba(11,74,115,0.18);
+            animation: fadeInLeft 1.1s both;
+        }
+        #hero-section p {
+            font-size: 1.45rem;
+            font-weight: 500;
+            animation: fadeInLeft 1.3s both;
+        }
+        #hero-section .search-input {
+            font-size: 1.2rem;
+            padding: 1.1rem 2rem;
+            border-radius: 2rem;
+        }
+        #hero-section .btn-primary {
+            font-size: 1.2rem;
+            padding: 1.1rem 2.2rem;
+        }
+
+        /* Tombstone/Arch shape for specific image containers */
+        .arch-image-container {
+            position: relative;
+            border-radius: 100px 100px 0 0;
+            overflow: hidden;
+            animation: fadeIn 1.2s both;
+            box-shadow: 0 14px 30px -3px rgba(0, 0, 0, 0.13), 0 6px 12px -2px rgba(0, 0, 0, 0.07);
+            height: 420px;
+        }
+        .arch-image-container.contact-image {
+            height: 540px;
+        }
+        .arch-image-container.value-image {
+            height: 480px;
+        }
+        .arch-image-container img,
+        .arch-image-container video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .arch-image-container:hover img,
+        .arch-image-container:hover video {
+            transform: scale(1.07) rotate(-1deg);
+        }
+
+        .contact-button-styled {
+            transition: background-image 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+            animation: fadeIn 1.2s both;
+            background-image: linear-gradient(to right, #C19469, #A87D59);
+            color: white;
+            border-radius: 9999px;
+            padding: 1.1rem 2.2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            box-shadow: 0 4px 16px rgba(193,148,105,0.10);
+        }
+        .contact-button-styled:hover {
+            background-image: linear-gradient(to right, #A87D59, #8F6748);
+            box-shadow: 0 8px 16px rgba(193,148,105,0.18);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .contact-button-styled:active{
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+        }
+
+        .search-input {
+            transition: box-shadow 0.3s, transform 0.2s;
+            animation: fadeIn 1.2s both;
+            font-size: 1.1rem;
+        }
+        .search-input:focus {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.13);
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .glassmorphism {
+            background-color: rgba(226, 226, 226, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            animation: fadeInDown 1s both;
+        }
+        /* Header Navigation Link Font Size */
+        header nav ul li a.nav-link {
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            padding: 0.2em 0.5em;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+        header nav ul li a.nav-link:hover {
+            text-shadow: 0 2px 8px #0b4a7333;
+        }
+        @media (min-width: 1024px) {
+             header nav ul li a.nav-link {
+                font-size: 1.55rem;
+            }
+        }
+
+        .animated-number {
+            transition: opacity 0.5s, transform 0.5s;
+            opacity: 0;
+            transform: translateY(20px) scale(1.1);
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+        .animated-number.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1.15);
+            animation: countUp 1s forwards, popIn 0.7s 1.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+        }
+        @keyframes popIn {
+            0% { transform: scale(1.15);}
+            60% { transform: scale(1.25);}
+            100% { transform: scale(1);}
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .mobile-nav {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background-color: rgba(226, 226, 226, 0.97);
+            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            padding: 1.5rem; z-index: 40; flex-direction: column;
+            align-items: center; gap: 0.7rem;
+            border-bottom-left-radius: 0.7rem; border-bottom-right-radius: 0.7rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+            animation: fadeInDown 0.7s both;
+        }
+        #mobile-menu ul li a.nav-link {
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        /* Keyframes for general animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px);} to { opacity: 1; transform: translateY(0);} }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px);} to { opacity: 1; transform: translateX(0);} }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px);} to { opacity: 1; transform: translateX(0);} }
+        @keyframes fadeOutUp { from { opacity: 1; transform: translateY(0);} to { opacity: 0; transform: translateY(-20px);} }
+        .animate-fadeOutUp { animation: fadeOutUp 0.5s both; }
+        .animate-fadeIn { animation: fadeIn 1.2s both; }
+        .animate-fadeInUp { animation: fadeInUp 1s both; }
+        .animate-fadeInDown { animation: fadeInDown 1s both; }
+        .animate-fadeInLeft { animation: fadeInLeft 1s both; }
+        .animate-fadeInRight { animation: fadeInRight 1s both; }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+        }
+        .bg-E2E2E2 { background-color: #E2E2E2; }
+        .text-D4C3B3 { color: #D4C3B3; }
+        .text-C19469 { color: #C19469; }
+
+        /* Popular Residences Section Enhanced Styles */
+        #popular-residences-section {
+            position: relative;
+            overflow: hidden;
+        }
+        #popular-residences-section .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        #popular-residences-bg-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            filter: blur(14px) brightness(0.32); /* dimmed more */
+            opacity: 0.43; /* increased transparency by 30% (was 0.62) */
+            z-index: 0;
+            transition: background-image 0.6s;
+        }
+
+        #popular-residences-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 540px;
+            perspective: 1500px;
+            overflow: visible;
+            margin-bottom: 2.2rem;
+        }
+
+        /* --- CARD SIZE REDUCED BY ~13% --- */
+        .property-carousel-card {
+            position: absolute;
+            width: clamp(275px, 24vw, 320px); /* was clamp(320px, 28vw, 370px) */
+            transition: transform 0.7s cubic-bezier(0.35, 0, 0.25, 1), opacity 0.6s, box-shadow 0.4s;
+            opacity: 0;
+            background-color: white;
+            border-radius: 1.1rem;
+            box-shadow: 0 10px 32px rgba(0,0,0,0.13), 0 6px 12px rgba(0,0,0,0.09);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            font-size: 1.1rem;
+        }
+        .property-carousel-card img {
+            width: 100%;
+            height: 200px; /* was 230px */
+            object-fit: cover;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .property-carousel-card .card-content {
+            padding: 1.2rem 1rem 1rem 1rem; /* was 1.7rem 1.3rem 1.3rem 1.3rem */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .property-carousel-card .card-title {
+            font-size: 1.7rem; /* was 2.1rem */
+            font-weight: 800;
+            color: #1F2937;
+            margin-bottom: 0.5rem; /* was 0.7rem */
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .property-carousel-card .location-text {
+            color: #4B5563;
+            font-size: 1.05rem; /* was 1.25rem */
+            margin-bottom: 0.8rem; /* was 1.2rem */
+            flex-grow: 1;
+            line-height: 1.4;
+        }
+        .property-carousel-card .price-text {
+            font-size: 2.1rem; /* was 2.5rem */
+            font-weight: 800;
+            margin-top: auto;
+            color: #0b4a73;
+            line-height: 1.2;
+            letter-spacing: 0.01em;
+        }
+
+        @keyframes contentFadeInUp {
+            from { opacity: 0; transform: translateY(15px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .property-carousel-card.active .card-title,
+        .property-carousel-card.active .location-text,
+        .property-carousel-card.active .price-text {
+            opacity: 0;
+        }
+        .property-carousel-card.active .card-title {
+            animation: contentFadeInUp 0.4s 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        .property-carousel-card.active .location-text {
+            animation: contentFadeInUp 0.4s 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        .property-carousel-card.active .price-text {
+            animation: contentFadeInUp 0.4s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* Roll transitions */
+        .property-carousel-card.active {
+            transform: translateX(0) scale(1.05) rotateY(0deg);
+            opacity: 1;
+            z-index: 2;
+            box-shadow: 0 16px 40px rgba(11,74,115,0.13), 0 8px 24px rgba(0,0,0,0.13);
+            animation: cardPopIn 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        @keyframes cardPopIn {
+            0% { transform: scale(0.95) translateY(30px);}
+            60% { transform: scale(1.08) translateY(-8px);}
+            100% { transform: scale(1.05) translateY(0);}
+        }
+        .property-carousel-card.prev {
+            transform: translateX(-80%) scale(0.88) rotateY(45deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .property-carousel-card.next {
+            transform: translateX(80%) scale(0.88) rotateY(-45deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .property-carousel-card.far-prev {
+            transform: translateX(-160%) scale(0.7) rotateY(60deg);
+            opacity: 0;
+            z-index: 0;
+        }
+        .property-carousel-card.far-next {
+            transform: translateX(160%) scale(0.7) rotateY(-60deg);
+            opacity: 0;
+            z-index: 0;
+        }
+
+        /* --- REMOVED SLIDE ANIMATIONS FOR CARDS --- */
+        .property-carousel-card.slide-left-in,
+        .property-carousel-card.slide-right-in,
+        .property-carousel-card.slide-left-out,
+        .property-carousel-card.slide-right-out {
+            animation: none !important;
+        }
+
+        /* Single card view for mobile - No roll effect, keep it simple */
+        .property-carousel-card.single-view {
+            position: relative;
+            opacity: 1;
+            z-index: 1;
+            transform: none;
+            width: clamp(275px, 90vw, 340px); /* was clamp(320px, 90vw, 400px) */
+            margin: 0 auto;
+        }
+        .property-carousel-card.single-view.active .card-title,
+        .property-carousel-card.single-view.active .location-text,
+        .property-carousel-card.single-view.active .price-text {
+            opacity: 1;
+            animation: none;
+        }
+        .property-carousel-card.single-view.active .card-title { animation: contentFadeInUp 0.4s 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .property-carousel-card.single-view.active .location-text { animation: contentFadeInUp 0.4s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .property-carousel-card.single-view.active .price-text { animation: contentFadeInUp 0.4s 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+
+        .carousel-nav-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .carousel-nav-button {
+            background-image: linear-gradient(to right, #0b4a73, #303E55);
+            color: white;
+            padding: 1.1rem;
+            border-radius: 9999px;
+            transition: background-image 0.3s, box-shadow 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 16px rgba(11,74,115,0.10);
+        }
+        .carousel-nav-button:hover {
+            background-image: linear-gradient(to right, #083754, #231F20);
+            box-shadow: 0 8px 16px rgba(11,74,115,0.18);
+            transform: translateY(-1px) scale(1.07);
+        }
+
+        /* --- HEADER LOGO SIZE INCREASED BY 20% --- */
+        header .container > img {
+            height: 2.4rem !important; /* was 2rem (h-8), now 2.4rem */
+        }
+        @media (min-width: 768px) {
+            header .container > img {
+            height: 3rem !important; /* was 2.5rem (h-10), now 3rem */
+            }
+        }
+        /* --- HEADER NAV FONT SIZE REDUCED --- */
+        header nav ul li a.nav-link {
+            font-size: 1.1rem;
+        }
+        @media (min-width: 1024px) {
+            header nav ul li a.nav-link {
+            font-size: 1.25rem;
+            }
+        }
+        .carousel-nav-button:active {
+            transform: translateY(0px) scale(0.97);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .carousel-nav-button svg {
+            width: 34px;
+            height: 34px;
+        }
+    </style>
+    <!-- Removed duplicate HERO SECTION SLIDESHOW script to prevent conflicts -->
+    <script>
+    // HERO SECTION SLIDESHOW
+    document.addEventListener('DOMContentLoaded', function () {
+        // Slideshow images for hero section
+        const heroImages = [
+            "demoimg1.jpg",
+            "demoimg2.jpg",
+            "demoimg3.jpg",
+            "demoimg4.jpg",
+            "demoimg5.jpg",
+            "demoimg6.jpg",
+            "demoimg7.jpg",
+            "demoimg8.jpg",
+            "demoimg9.jpg",
+        ];
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection && !document.querySelector('.hero-bg-slideshow')) {
+            const slideshowDiv = document.createElement('div');
+            slideshowDiv.className = 'hero-bg-slideshow';
+            heroImages.forEach((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = "Building";
+                if (idx === 0) img.classList.add('active');
+                slideshowDiv.appendChild(img);
+            });
+            heroSection.prepend(slideshowDiv);
+
+            // Slideshow logic
+            let current = 0;
+            setInterval(() => {
+                const imgs = slideshowDiv.querySelectorAll('img');
+                imgs[current].classList.remove('active');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.add('active');
+            }, 4200);
+        }
+    });
+    </script>
+    <script>
+    // POPULAR RESIDENCES SLIDE ANIMATION
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.getElementById('popular-residences-container');
+        const prevBtn = document.getElementById('prev-property');
+        const nextBtn = document.getElementById('next-property');
+        let lastDirection = null;
+        let isSliding = false;
+
+        // Patch renderCarouselProperties to support slide animation
+        const origRender = window.renderCarouselProperties;
+        // Remove carousel navigation buttons and cards, add slideshow of properties
+
+        // Remove carousel nav buttons if present
+        const navButtonsContainer = document.querySelector('.carousel-nav-buttons-container');
+        if (navButtonsContainer) navButtonsContainer.remove();
+
+        // Slideshow logic for properties
+        let slideshowIndex = 0;
+        let slideshowInterval = null;
+
+        function renderPropertySlideshow() {
+            if (!container) return;
+            container.innerHTML = '';
+
+            const property = properties[slideshowIndex];
+            if (!property) return;
+
+            // Set blurred background
+            const blurBg = document.getElementById('popular-residences-bg-blur');
+            if (blurBg) blurBg.style.backgroundImage = `url(${property.imageUrl})`;
+
+            // Slideshow card
+            const card = document.createElement('div');
+            card.className = 'property-carousel-card single-view active';
+            card.style.position = 'relative';
+            card.innerHTML = `
+            <img src="${property.imageUrl}" alt="${property.title}" onerror="this.onerror=null;this.src='https://placehold.co/400x200/EEE/31343C?text=Image+Error&font=inter';">
+            <div class="card-content" style="text-align:left;">
+                <h3 class="card-title">${property.title}</h3>
+                <p class="location-text">${property.location}</p>
+                <p class="price-text">${property.price}</p>
+            </div>
+            `;
+            container.appendChild(card);
+        }
+
+        function startPropertySlideshow() {
+            if (slideshowInterval) clearInterval(slideshowInterval);
+            renderPropertySlideshow();
+            slideshowInterval = setInterval(() => {
+            slideshowIndex = (slideshowIndex + 1) % properties.length;
+            renderPropertySlideshow();
+            }, 4000);
+        }
+
+        // Patch global renderCarouselProperties to render slideshow
+        window.renderCarouselProperties = function() {
+            renderPropertySlideshow();
+        };
+
+        // Start slideshow on DOMContentLoaded
+        startPropertySlideshow();
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', e => {
+                e.preventDefault();
+                slideTo('right');
+            });
+            nextBtn.addEventListener('click', e => {
+                e.preventDefault();
+                slideTo('left');
+            });
+        }
+        // Patch global renderCarouselProperties for slide support
+        if (typeof window.renderCarouselProperties === 'function') {
+            window.renderCarouselProperties = function() {
+                origRender && origRender();
+            };
+        }
+    });
+    </script>
+</head>
+<body class="bg-E2E2E2">
+    <header class="sticky top-0 z-50 py-4 shadow-md glassmorphism">
+        <div class="container flex justify-between items-center">
+            <img src="vitaranavyblue2.png" alt="Vitara Realty logo featuring a stylized blue building icon next to the text VITARA REALTY in bold blue letters on a transparent background, conveying a professional and trustworthy real estate brand identity" class="h-8 md:h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x40/0B4A73/FFFFFF?text=Vitara&font=inter';">
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#hero-section" data-focus="hero-search-input" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Property</a></li>
+                    <li><a href="#value-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Services</a></li>
+                    <li><a href="#popular-residences-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Product</a></li>
+                    <li><a href="#get-started-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">About Us</a></li>
+                    <li><a href="#contact-us-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="menu-button" class="md:hidden bg-[#5AA1BC] text-white px-6 py-2 rounded-full hover:bg-[#48C3CF] transition duration-300">Menu</button>
+        </div>
+        <nav id="mobile-menu" class="hidden mobile-nav md:hidden">
+            <ul class="flex flex-col space-y-4 items-center">
+                <li><a href="#hero-section" data-focus="hero-search-input" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 py-2 block">Property</a></li>
+                <li><a href="#value-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 py-2 block">Services</a></li>
+                <li><a href="#popular-residences-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 py-2 block">Product</a></li>
+                <li><a href="#get-started-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 py-2 block">About Us</a></li>
+                <li><a href="#contact-us-section" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 py-2 block">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero-section" class="bg-gradient-to-br py-16 md:py-24 relative overflow-hidden" style="background: linear-gradient(to bottom, #0b4a73, #303E55); animation: gradient-animation 10s ease-in-out infinite alternate; background-size: 200% 200%;">
+        <div class="container flex flex-col md:flex-row items-center gap-8 px-4">
+            <div class="md:w-1/2 text-center md:text-left animate-fadeInLeft">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Discover Most Suitable Property</h1>
+                <p class="text-lg text-[#D4C3B3] mb-8">Find a variety of properties that suit you very easily. Forget all difficulties in finding a residence for you.</p>
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
+                    <input type="text" id="hero-search-input" placeholder="Search by location" class="search-input w-full sm:w-auto px-4 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-500 text-gray-800">
+                    <button class="btn-primary w-full sm:w-auto">Search</button>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative mt-8 md:mt-0 animate-fadeInRight">
+                <div class="arch-image-container">
+                    <video autoplay loop muted playsinline poster="herovid3.mp4" style="width:100%;height:100%;object-fit:cover;display:block;">
+                        <source src="herovid3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-E2E2E2 py-12">
+        <div class="container text-center">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                <div><h2 class="text-3xl md:text-4xl font-bold animated-number" style="color: #0b4a73;" data-target-text="17K+">0</h2><p class="text-gray-600">Premium Product</p></div>
+                <div><h2 class="text-3xl md:text-4xl font-bold animated-number" style="color: #303E55;" data-target-text="10K+">0</h2><p class="text-gray-600">Happy Customer</p></div>
+                <div><h2 class="text-3xl md:text-4xl font-bold animated-number" style="color: #C19469;" data-target-text="28+">0</h2><p class="text-gray-600">Awards Winning</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="popular-residences-section" class="bg-gray-100 py-16">
+        <div id="popular-residences-bg-blur"></div>
+        <div class="container text-center"> 
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 animate-fadeInUp">Popular Residences</h2>
+            <p class="text-gray-600 mb-8 animate-fadeInUp" style="animation-delay: 0.2s;">Check out some of our most sought-after properties.</p>
+            
+            <div id="popular-residences-container">
+                </div>
+
+            <div class="carousel-nav-buttons-container animate-fadeInUp" style="animation-delay: 0.4s;">
+                <button id="prev-property" class="carousel-nav-button" aria-label="Previous Property">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button id="next-property" class="carousel-nav-button" aria-label="Next Property">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="value-section" class="bg-E2E2E2 py-16">
+        <div class="container grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 animate-fadeInLeft">
+                <h3 class="text-sm font-semibold uppercase text-C19469 mb-2">Our Value</h3>
+                <h2 class="text-3xl font-bold text-[#303E55] mb-4">Value We Give To You</h2>
+                <p class="text-gray-700 mb-6">We are always ready to help by providing the best service for you. We believe a good place to live can make your life better.</p>
+                <ul class="space-y-3">
+                    <li class="flex items-center"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/check-circle-2.svg" alt="Check" class="w-5 h-5 mr-3 text-green-500 flex-shrink-0"><span class="text-[#303E55]">Best interest rates on the market</span></li>
+                    <li class="flex items-center"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/check-circle-2.svg" alt="Check" class="w-5 h-5 mr-3 text-green-500 flex-shrink-0"><span class="text-[#303E55]">Prevent unstable prices</span></li>
+                    <li class="flex items-center"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/check-circle-2.svg" alt="Check" class="w-5 h-5 mr-3 text-green-500 flex-shrink-0"><span class="text-[#303E55]">Best price on the market</span></li>
+                    <li class="flex items-center"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/check-circle-2.svg" alt="Check" class="w-5 h-5 mr-3 text-green-500 flex-shrink-0"><span class="text-[#303E55]">Security of your data</span></li>
+                </ul>
+            </div>
+            <div class="order-1 md:order-2 arch-image-container value-image">
+                 <!-- <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZSUyMHNlcnZpY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60" alt="Our Value" onerror="this.onerror=null;this.src='https://placehold.co/600x450/E2E2E2/0B4A73?text=Image+Not+Found&font=inter';"> -->
+                  <video autoplay loop muted playsinline poster="herovid5.mp4" style="width:100%;height:100%;object-fit:cover;display:block;">
+                        <source src="herovid5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us-section" class="bg-gray-100 py-16">
+        <div class="container grid md:grid-cols-2 gap-12 items-center">
+            <div class="arch-image-container contact-image animate-fadeInLeft">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60" alt="Contact Us" onerror="this.onerror=null;this.src='https://placehold.co/600x450/E2E2E2/C19469?text=Image+Not+Found&font=inter';">
+            </div>
+            <div class="animate-fadeInRight">
+                <h3 class="text-sm font-semibold uppercase text-C19469 mb-2">Get In Touch</h3>
+                <h2 class="text-3xl font-bold text-[#303E55] mb-4">Contact Us</h2>
+                <p class="text-gray-700 mb-6">Is there a problem finding your dream home? Need a guide in buying your first home? Or need a consultation on residential issues? Just contact us.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <a href="tel:02112314514" class="contact-button-styled text-center flex flex-col items-center justify-center p-4"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/phone.svg" alt="Call Icon" class="w-6 h-6 mx-auto mb-2 filter invert brightness-0"><span class="font-semibold">Call</span><span class="text-sm text-gray-200">021.123.145.14</span></a>
+                    <a href="#" class="contact-button-styled text-center flex flex-col items-center justify-center p-4"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/message-circle.svg" alt="Chat Icon" class="w-6 h-6 mx-auto mb-2 filter invert brightness-0"><span class="font-semibold">Chat</span><span class="text-sm text-gray-200">021.123.145.14</span></a>
+                    <a href="https://facetime.apple.com/02112314514" class="contact-button-styled text-center flex flex-col items-center justify-center p-4"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/video.svg" alt="Video Call Icon" class="w-6 h-6 mx-auto mb-2 filter invert brightness-0"><span class="font-semibold">Video Call</span><span class="text-sm text-gray-200">021.123.145.14</span></a>
+                    <a href="sms:02112314514" class="contact-button-styled text-center flex flex-col items-center justify-center p-4"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" alt="Message Icon" class="w-6 h-6 mx-auto mb-2 filter invert brightness-0"><span class="font-semibold">Message</span><span class="text-sm text-gray-200">021.123.145.14</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="get-started-section" class="bg-gradient-to-r text-white py-20 md:py-24" style="background-image: linear-gradient(to right, #0b4a73, #303E55);">
+        <div class="container text-center animate-fadeInUp">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Get started with Vitara</h2>
+            <p class="text-lg mb-10 max-w-2xl mx-auto text-gray-300">Subscribe and find super attractive price quotes from us. Find your residence soon.</p>
+            <button class="btn-primary text-lg px-8 py-3">Subscribe</button>
+        </div></div>
+    </section>
+
+    <footer class="bg-[#231F20] text-white py-8">
+        <div class="container text-center">
+             <img src="vitarapng01.png" alt="Vitara Logo White" class="h-6 mx-auto mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x30/FFFFFF/AAAAAA?text=Vitara&font=inter';">
+            <p class="text-gray-400 text-sm">&copy; <span id="current-year"></span> Vitara. All rights reserved.</p>
+            <div class="mt-4 space-x-4"><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Populate current year in footer
+        const currentYearEl = document.getElementById('current-year');
+        if (currentYearEl) {
+            currentYearEl.textContent = new Date().getFullYear();
+        }
+
+        // Mobile menu toggle functionality
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden'); mobileMenu.classList.add('flex');
+                    mobileMenu.classList.remove('animate-fadeOutUp'); mobileMenu.classList.add('animate-fadeInDown');
+                } else {
+                    mobileMenu.classList.remove('animate-fadeInDown'); mobileMenu.classList.add('animate-fadeOutUp'); 
+                    setTimeout(() => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); }, 500); 
+                }
+            });
+        }
+        
+        // Smooth scroll for navigation links and focus on input
+        document.querySelectorAll('header nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.remove('animate-fadeInDown'); mobileMenu.classList.add('animate-fadeOutUp'); 
+                         setTimeout(() => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); }, 500);
+                    }
+
+                    // Focus on specified input if data-focus attribute exists
+                    const focusTargetId = this.dataset.focus;
+                    if (focusTargetId) {
+                        const focusElement = document.getElementById(focusTargetId);
+                        if (focusElement) {
+                            // Slight delay to ensure section is in view before focusing
+                            setTimeout(() => focusElement.focus(), 600); 
+                        }
+                    }
+                }
+            });
+        });
+
+
+        // Popular Residences Carousel Functionality
+        const popularResidencesContainer = document.getElementById('popular-residences-container');
+        const popularResidencesBgBlur = document.getElementById('popular-residences-bg-blur'); 
+        const prevPropertyButton = document.getElementById('prev-property');
+        const nextPropertyButton = document.getElementById('next-property');
+
+        const properties = [
+            { title: 'Aliva Priva Jardin', location: 'Jakarta Garden City Street, Cakung, Jakarta Timur, DKI Jakarta 13910, Indonesia', price: '$47,043', imageUrl: 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+            { title: 'Asatti Garden City', location: 'Pahlawan Street XVII No. 215, Cinangka, Depok, Jawa Barat 16516, Indonesia', price: '$66,353', imageUrl: 'https://images.pexels.com/photos/209315/pexels-photo-209315.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+            { title: 'Citraland Puri Serang', location: 'Ruko Puri Indah Residence Blok A7, Lingkar Selatan, Ciracas, Serang, Banten 42116', price: '$35,585', imageUrl: 'https://images.pexels.com/photos/221540/pexels-photo-221540.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+            { title: 'Modern Villa Sky', location: 'Jl. Elang IV, Sawah Lama, Kec. Ciputat, Kota Tangerang Selatan, Banten 15413', price: '$82,100', imageUrl: 'https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+            { title: 'Greenwood Residence', location: 'Jl. Raya KSU, Tirtajaya, Kec. Sukmajaya, Kota Depok, Jawa Barat 16412', price: '$55,500', imageUrl: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+            { title: 'Oceanview Apartments', location: 'Pantai Mutiara Blok R, Pluit, Penjaringan, Jakarta Utara, DKI Jakarta 14450', price: '$95,250', imageUrl: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop' },
+        ];
+
+        let currentPropertyIndex = 0;
+
+        function createCarouselCard(property) {
+            const card = document.createElement('div');
+            card.className = 'property-carousel-card'; 
+            card.innerHTML = `
+                <img src="${property.imageUrl}" alt="${property.title}" onerror="this.onerror=null;this.src='https://placehold.co/400x200/EEE/31343C?text=Image+Error&font=inter';">
+                <div class="card-content">
+                    <h3 class="card-title">${property.title}</h3>
+                    <p class="location-text">${property.location}</p>
+                    <p class="price-text">${property.price}</p>
+                </div>
+            `;
+            return card;
+        }
+
+        function renderCarouselProperties() {
+            if (!popularResidencesContainer) return;
+            popularResidencesContainer.innerHTML = ''; 
+
+            const screenWidth = window.innerWidth;
+            const activeProperty = properties[currentPropertyIndex];
+
+            if (popularResidencesBgBlur && activeProperty) {
+                popularResidencesBgBlur.style.backgroundImage = `url(${activeProperty.imageUrl})`;
+            }
+
+            if (screenWidth < 768) { 
+                const card = createCarouselCard(activeProperty);
+                card.classList.add('single-view', 'active'); 
+                popularResidencesContainer.appendChild(card);
+                popularResidencesContainer.style.minHeight = 'auto'; 
+            } else { 
+                popularResidencesContainer.style.minHeight = '520px';
+
+                const activeIdx = currentPropertyIndex;
+                const prevIdx = (currentPropertyIndex - 1 + properties.length) % properties.length;
+                const nextIdx = (currentPropertyIndex + 1) % properties.length;
+                // Ensure farPrev and farNext are distinct from prev, active, next if properties.length is small
+                const farPrevIdx = (properties.length > 3) ? (currentPropertyIndex - 2 + properties.length) % properties.length : -1; // -1 indicates not to render
+                const farNextIdx = (properties.length > 3) ? (currentPropertyIndex + 2) % properties.length : -1; // -1 indicates not to render
+
+
+                const cardsData = [];
+                if (farPrevIdx !== -1 && farPrevIdx !== prevIdx && farPrevIdx !== activeIdx && farPrevIdx !== nextIdx) {
+                    cardsData.push({ data: properties[farPrevIdx], class: 'far-prev', index: farPrevIdx });
+                }
+                 if (prevIdx !== activeIdx) { // Avoid duplicate if only 1 or 2 items
+                    cardsData.push({ data: properties[prevIdx], class: 'prev', index: prevIdx });
+                }
+                cardsData.push({ data: properties[activeIdx], class: 'active', index: activeIdx });
+
+                if (nextIdx !== activeIdx) { // Avoid duplicate if only 1 or 2 items
+                     cardsData.push({ data: properties[nextIdx], class: 'next', index: nextIdx });
+                }
+                if (farNextIdx !== -1 && farNextIdx !== nextIdx && farNextIdx !== activeIdx && farNextIdx !== prevIdx) {
+                    cardsData.push({ data: properties[farNextIdx], class: 'far-next', index: farNextIdx });
+                }
+                
+                // Define the desired order for appending to DOM to control layering (z-index helps, but DOM order can influence perceived layering with transforms)
+                // Render far cards first, then adjacent, then active.
+                const renderOrder = ['far-prev', 'far-next', 'prev', 'next', 'active'];
+                const tempContainer = document.createDocumentFragment(); // Use a fragment to minimize reflows
+
+                renderOrder.forEach(className => {
+                    cardsData.forEach(cardItem => {
+                        if (cardItem.class === className) {
+                            const cardElement = createCarouselCard(cardItem.data);
+                            cardElement.classList.add(cardItem.class);
+                            tempContainer.appendChild(cardElement);
+                        }
+                    });
+                });
+                popularResidencesContainer.appendChild(tempContainer);
+            }
+        }
+        
+        // Event listeners for carousel navigation
+        if (prevPropertyButton && nextPropertyButton) {
+            prevPropertyButton.addEventListener('click', () => {
+                currentPropertyIndex = (currentPropertyIndex - 1 + properties.length) % properties.length;
+                renderCarouselProperties();
+            });
+
+            nextPropertyButton.addEventListener('click', () => {
+                currentPropertyIndex = (currentPropertyIndex + 1) % properties.length;
+                renderCarouselProperties();
+            });
+        }
+        
+        // Initial render of carousel properties
+        renderCarouselProperties();
+        // Re-render on window resize to switch between desktop and mobile views
+        window.addEventListener('resize', renderCarouselProperties);
+
+        // Animated Number Counter Functionality
+        const animatedNumbers = document.querySelectorAll('.animated-number');
+        const animateOnScroll = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    if (el.classList.contains('is-visible')) return; // Already animated
+
+                    el.classList.add('is-visible'); // Add class for initial fade-in via CSS
+                    
+                    const targetText = el.dataset.targetText; // e.g., "17K+"
+                    const suffix = targetText.replace(/[0-9.,]/g, ''); // Extracts "K+" or "+"
+                    const targetNumber = parseFloat(targetText.replace(/[^0-9.]/g, '')); // Extracts 17 or 10 or 20
+
+                    if (isNaN(targetNumber)) {
+                        el.textContent = targetText; // If not a number, just show text
+                        return;
+                    }
+
+                    let currentNum = 0;
+                    const duration = 1200; // ms
+                    const stepTime = Math.abs(Math.floor(duration / targetNumber));
+                    
+                    const timer = setInterval(() => {
+                        currentNum += 1;
+                        if (targetNumber > 1000 && currentNum > targetNumber/20) { // Accelerate for large numbers
+                             currentNum += Math.floor(targetNumber/100) || 1;
+                        }
+                        if (currentNum >= targetNumber) {
+                            clearInterval(timer);
+                            el.textContent = targetNumber.toLocaleString() + suffix;
+                        } else {
+                            el.textContent = currentNum.toLocaleString() + suffix;
+                        }
+                    }, Math.min(stepTime, 50)); // Cap step time for smoother animation on small numbers
+
+                    observer.unobserve(el); // Optional: stop observing after animation
+                }
+            });
+        };
+
+        if (animatedNumbers.length > 0) {
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null, // viewport
+                threshold: 0.3 // Trigger when 30% of the element is visible
+            });
+            animatedNumbers.forEach(num => observer.observe(num));
+        }
+
+    });
+    </script>
+</body>
+</html>
